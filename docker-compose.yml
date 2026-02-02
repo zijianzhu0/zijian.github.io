@@ -20,4 +20,3 @@ services:
       - .:/srv/jekyll
     environment:
       - BUNDLE_GEMFILE=/srv/jekyll/Gemfile
-      - JEKYLL_HOST=0.0.0.0
