@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<p class="photo-nav">
+  {% assign photos = site.categories.photos | sort: "date" %}
+  {% assign idx = nil %}
+  {% for p in photos %}
+    {% if p.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}
+  {% endfor %}
+
+  {% if idx != nil %}
+    {% assign prev_i = idx | minus: 1 %}
+    {% assign next_i = idx | plus: 1 %}
+
+    {% if prev_i >= 0 %}
+      <a href="{{ photos[prev_i].url }}">Back</a>
+    {% else %}
+      <span class="muted">Back</span>
+    {% endif %}
+
+    <span class="dot">·</span>
+
+    {% if next_i < photos.size %}
+      <a href="{{ photos[next_i].url }}">Next</a>
+    {% else %}
+      <span class="muted">Next</span>
+    {% endif %}
+  {% endif %}
+</p>
+
+<img class="photo-img" src="{{ page.image }}" alt="{{ page.title }}" />
+
+<h1>{{ page.title }} <span class="muted">({{ page.year }})</span></h1>
+
+{% if page.note %}
+<p class="muted">{{ page.note }}</p>
+{% endif %}
+
+{{ content }}

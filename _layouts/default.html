@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <main>
+      <header class="nav">
+        <a href="/">Home</a>
+        <span class="dot">·</span>
+        <a href="/photos/">Photos</a>
+        <span class="dot">·</span>
+        <a href="/links/">Links</a>
+        <span class="dot">·</span>
+        <a href="/media/">Media</a>
+      </header>
+
+      {{ content }}
+
+      <footer class="footer">
+        <span class="muted">© {{ site.title }}</span>
+      </footer>
+    </main>
+  </body>
+</html>
