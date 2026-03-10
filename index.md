@@ -3,13 +3,11 @@ layout: default
 title: Home
 ---
 
-# Your Name
+# Zijian Zhu
 
-A short sentence about you.
-you
+Engineering at [Applied Intuition](https://www.appliedintuition.com/). Mountain View, CA.
 
-gfdghfd 
-asdfsadfsadf
+Hi! I'm Zijian and I'm a hardware engineer and I'm trying my best to understand how Jekyll works :)
 
 - [Photos](/photos/)
 - [Links](/links/)
