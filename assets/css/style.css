@@ -1,0 +1,47 @@
+:root { --w: 720px; --fg: #111; --muted: #666; --bg: #fff; --link: #111; --line: #eaeaea; }
+
+html, body { background: var(--bg); color: var(--fg); }
+
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; line-height: 1.65; }
+
+main { max-width: var(--w); margin: 42px auto; padding: 0 18px; }
+
+a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+a:hover { border-bottom-color: var(--fg); }
+
+.nav { margin-bottom: 28px; }
+
+.dot { margin: 0 8px; color: var(--muted); }
+
+.muted { color: var(--muted); }
+
+h1, h2 { font-weight: 650; letter-spacing: -0.01em; }
+
+h1 { font-size: 26px; margin: 0 0 14px; }
+
+h2 { font-size: 18px; margin-top: 30px; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
+
+.photo-img { width: 100%; height: auto; border-radius: 10px; margin: 10px 0 14px; }
+
+.photo-nav { margin: 0 0 18px; }
+
+.footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); }
+
+.photo-gallery { margin-top: 18px; }
+
+.photo-gallery__status { margin-bottom: 12px; }
+
+.photo-gallery__count, .photo-gallery__caption { margin: 0; }
+
+.photo-gallery__count { color: var(--muted); font-size: 0.95rem; }
+
+.photo-gallery__image { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 10px; cursor: pointer; background: #f6f6f6; }
+
+.photo-gallery__links { margin: 12px 0 0; }
+
+.photo-gallery__caption { margin-top: 14px; color: var(--muted); }
+
+@media (max-width: 720px) { .photo-gallery__count { margin-top: 6px; } }

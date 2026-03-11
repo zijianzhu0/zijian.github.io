@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder photo 11</title>
+  <desc id="desc">A placeholder image for the gallery.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d1fae5" />
+      <stop offset="100%" stop-color="#bfdbfe" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <circle cx="300" cy="240" r="150" fill="#ffffff" opacity="0.18" />
+  <circle cx="820" cy="460" r="220" fill="#064e3b" opacity="0.08" />
+  <text x="96" y="150" font-family="Helvetica, Arial, sans-serif" font-size="36" fill="#064e3b" opacity="0.68">Placeholder</text>
+  <text x="96" y="680" font-family="Helvetica, Arial, sans-serif" font-size="170" font-weight="700" fill="#064e3b">11</text>
+</svg>
