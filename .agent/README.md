@@ -102,8 +102,20 @@ When replacing placeholders with real images:
 ## Deployment Model
 
 - This repo is intended to publish from the `main` branch.
+- Generated site output should be published to the `deploy` branch.
+- GitHub Pages for this repo should serve from the `deploy` branch root.
+- Preview URL for this repo is `https://zijianzhu0.github.io/zijian.github.io/`.
+- This repo must not take over `https://zijianzhu0.github.io`; that user site is controlled by the separate `zijianzhu0/zijianzhu0.github.io` repository.
 - Local Docker is for development only.
 - If deployment behavior changes, inspect repo settings and any CI configuration before editing build commands.
+
+## Deployment Workflow
+
+- Pushes to `main` should build the site with `_config.yml` and `_config.preview.yml`.
+- The GitHub Actions workflow should publish only the generated `_site` output to the `deploy` branch.
+- Normal deploys should not generate a `CNAME` file.
+- Manual workflow runs may accept a custom domain and generate `_site/CNAME` for that deploy only.
+- Do not use `zijian.page` as a custom domain until cutover time. Use the GitHub Pages preview URL or another subdomain for testing.
 
 ## Good First Checks Before Editing
 

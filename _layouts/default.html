@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+    <link rel="icon" type="image/png" href="{{ '/favicon.png' | relative_url }}" />
     {% if site.google_analytics %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
     <script>
@@ -19,13 +19,13 @@
   <body>
     <main>
       <header class="nav">
-        <a href="/">Home</a>
+        <a href="{{ '/' | relative_url }}">Home</a>
         <span class="dot">·</span>
-        <a href="/photos/">Photos</a>
+        <a href="{{ '/photos/' | relative_url }}">Photos</a>
         <span class="dot">·</span>
-        <a href="/links/">Links</a>
+        <a href="{{ '/links/' | relative_url }}">Links</a>
         <span class="dot">·</span>
-        <a href="/media/">Media</a>
+        <a href="{{ '/media/' | relative_url }}">Media</a>
       </header>
 
       {{ content }}

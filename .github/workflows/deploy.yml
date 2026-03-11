@@ -1,0 +1,49 @@
+name: Deploy site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      custom_domain:
+        description: "Optional custom domain for this deploy only"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build preview site
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.custom_domain == '' }}
+        run: bundle exec jekyll build --config _config.yml,_config.preview.yml
+
+      - name: Build custom-domain site
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.custom_domain != '' }}
+        run: |
+          cat <<EOF > _config.deploy.yml
+          url: "https://${{ inputs.custom_domain }}"
+          baseurl: ""
+          EOF
+          bundle exec jekyll build --config _config.yml,_config.deploy.yml
+          echo "${{ inputs.custom_domain }}" > _site/CNAME
+
+      - name: Deploy to deploy branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: deploy
+          folder: _site
+          clean: true
