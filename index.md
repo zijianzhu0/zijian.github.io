@@ -5,9 +5,7 @@ title: Home
 
 # Zijian Zhu
 
-Engineering at [Applied Intuition](https://www.appliedintuition.com/). Mountain View, CA.
-
-Hi! I'm Zijian and I'm a hardware engineer and I'm trying my best to understand how Jekyll works :)
+Hi! I'm Zijian and I like to play around with different things! I like movies, taking pictures, and getting a little exercise whenever I can. 
 
 - [Photos]({{ '/photos/' | relative_url }})
 - [Links]({{ '/links/' | relative_url }})
