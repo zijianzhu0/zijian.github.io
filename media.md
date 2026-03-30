@@ -5,10 +5,12 @@ title: Media
 
 # Media
 
+Some films, photographers, and image-makers I come back to.
+
 ## Movies
 - *Back to the Future Part II*
 - *Green Book*
 - *Catch Me If You Can*
 
-## Pictures / Photographers
-- [eatenbyflowers](https://www.instagram.com/eatenbyflowers?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==)
+## Photographers / Visual Work
+- [eatenbyflowers](https://www.instagram.com/eatenbyflowers/)

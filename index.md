@@ -5,8 +5,6 @@ title: Home
 
 # Zijian Zhu
 
-Hi! I'm Zijian and I like to play around with different things! I like movies, taking pictures, and getting a little exercise whenever I can. 
+Hi, I'm Zijian. I work in engineering and spend a lot of my free time on movies, photography, and getting outside whenever I can.
 
-- [Photos]({{ '/photos/' | relative_url }})
-- [Links]({{ '/links/' | relative_url }})
-- [Media]({{ '/media/' | relative_url }})
+This site is a small place for photos, links, and a few things I want to keep track of over time.
