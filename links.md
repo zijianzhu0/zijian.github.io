@@ -9,4 +9,4 @@ title: Links
 
 # Links
 
-- [A blog I like](https://example.com)
+- [Clouds from rockets: how rocket launches affect cloud formation](https://www.cloudsandclimate.com/blog/clouds_from_rockets/)
