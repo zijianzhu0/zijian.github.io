@@ -47,9 +47,11 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
 
 .post-gallery__image {
   display: block;
-  width: min(100%, 560px);
+  width: auto;
+  max-width: min(100%, 560px);
   margin: 0 auto;
   height: auto;
+  max-height: 72vh;
   border-radius: 14px;
   box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
 }
@@ -99,6 +101,10 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
 }
 
 @media (max-width: 720px) {
+  .post-gallery__image {
+    max-height: 58vh;
+  }
+
   .photo-gallery__count {
     margin-top: 6px;
   }
