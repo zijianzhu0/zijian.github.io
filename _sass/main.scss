@@ -39,6 +39,23 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
 .photo-nav { margin: 0 0 18px; }
 .footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); }
 
+.post-gallery {
+  display: grid;
+  gap: 18px;
+  margin: 22px 0 26px;
+}
+
+.post-gallery__image {
+  display: block;
+  width: auto;
+  max-width: min(100%, 560px);
+  margin: 0 auto;
+  height: auto;
+  max-height: 72vh;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
+}
+
 .photo-gallery {
   margin-top: 18px;
 }
@@ -84,6 +101,10 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
 }
 
 @media (max-width: 720px) {
+  .post-gallery__image {
+    max-height: 58vh;
+  }
+
   .photo-gallery__count {
     margin-top: 6px;
   }
