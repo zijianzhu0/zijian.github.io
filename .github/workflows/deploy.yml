@@ -27,8 +27,8 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
-      - name: Build site
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.custom_domain == '' }}
+      - name: Build production site
+        if: ${{ github.ref == 'refs/heads/main' && (github.event_name != 'workflow_dispatch' || inputs.custom_domain == '') }}
         run: bundle exec jekyll build --config _config.yml
 
       - name: Build custom-domain site
@@ -42,12 +42,14 @@ jobs:
           echo "${{ inputs.custom_domain }}" > _site/CNAME
 
       - name: Add default CNAME
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.custom_domain == '' }}
+        if: ${{ github.ref == 'refs/heads/main' && (github.event_name != 'workflow_dispatch' || inputs.custom_domain == '') }}
         run: cp CNAME _site/CNAME
 
-      - name: Deploy to deploy branch
+      - name: Deploy production site
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: deploy
           folder: _site
           clean: true
+          clean-exclude: preview
