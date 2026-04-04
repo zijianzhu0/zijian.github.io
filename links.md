@@ -9,4 +9,4 @@ title: Links
 
 # Links
 
-- [Clouds from rockets: how rocket launches affect cloud formation](https://www.cloudsandclimate.com/blog/clouds_from_rockets/)
+- [Clouds from rockets](https://www.cloudsandclimate.com/blog/clouds_from_rockets/)
