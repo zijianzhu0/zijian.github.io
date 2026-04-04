@@ -32,11 +32,15 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
 
 .photo-gallery { margin-top: 18px; }
 
+.photo-gallery__locations { margin: 0 0 12px; }
+
 .photo-gallery__status { margin-bottom: 12px; }
 
 .photo-gallery__count, .photo-gallery__caption { margin: 0; }
 
 .photo-gallery__count { color: var(--muted); font-size: 0.95rem; }
+
+.photo-location-link.is-active { border-bottom-color: var(--fg); }
 
 .photo-gallery__image { display: block; width: auto; max-width: 100%; max-height: 70vh; border-radius: 10px; cursor: pointer; }
 
