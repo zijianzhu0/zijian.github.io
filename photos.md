@@ -11,25 +11,26 @@ title: Photos
     <span class="dot">·</span>
     <a href="#yuzawa" id="yuzawa" class="photo-location-link" data-photo-index="5" data-location="yuzawa">yuzawa</a>
     <span class="dot">·</span>
-    <a href="#california" id="california" class="photo-location-link" data-photo-index="6" data-location="california">california</a>
+    <a href="#alaska" id="alaska" class="photo-location-link" data-photo-index="6" data-location="alaska">alaska</a>
     <span class="dot">·</span>
-    <a href="#michigan" id="michigan" class="photo-location-link" data-photo-index="11" data-location="michigan">michigan</a>
+    <a href="#california" id="california" class="photo-location-link" data-photo-index="8" data-location="california">california</a>
     <span class="dot">·</span>
-    <a href="#arizona" id="arizona" class="photo-location-link" data-photo-index="15" data-location="arizona">arizona</a>
+    <a href="#michigan" id="michigan" class="photo-location-link" data-photo-index="12" data-location="michigan">michigan</a>
     <span class="dot">·</span>
-    <a href="#alaska" id="alaska" class="photo-location-link" data-photo-index="21" data-location="alaska">alaska</a>
+    <a href="#arizona" id="arizona" class="photo-location-link" data-photo-index="16" data-location="arizona">arizona</a>
   </p>
 
   <div class="photo-gallery__status">
-    <p class="photo-gallery__count"><span id="photo-current">1</span> / <span id="photo-total">23</span></p>
+    <p class="photo-gallery__count"><span id="photo-current">1</span> / <span id="photo-total">22</span></p>
   </div>
 
   <button class="photo-gallery__frame" id="photo-image-next" type="button" aria-label="Show next photo">
     <img
       class="photo-gallery__image"
       id="photo-image"
-      src="{{ '/assets/photos/bike.jpeg' | relative_url }}"
-      alt="A biker taking a selfie while riding a motorcycle, Kamakura."
+      src="{{ '/assets/photos/tokyo-from-above.jpg' | relative_url }}"
+      alt="A visitor looking over Tokyo from a high-rise observation deck."
+      decoding="async"
     />
   </button>
 
@@ -40,7 +41,7 @@ title: Photos
   </p>
 
   <p class="photo-gallery__caption" id="photo-caption">
-    A biker taking a selfie while riding a motorcycle, Kamakura.
+    Tokyo from above.
   </p>
 </section>
 
@@ -48,6 +49,12 @@ title: Photos
   (function () {
     var gallery = document.querySelector(".photo-gallery");
     var photos = [
+      {
+        src: {{ '/assets/photos/tokyo-from-above.jpg' | relative_url | jsonify }},
+        alt: "A visitor looking over Tokyo from a high-rise observation deck.",
+        caption: "Tokyo from above.",
+        location: "tokyo"
+      },
       {
         src: {{ '/assets/photos/bike.jpeg' | relative_url | jsonify }},
         alt: "A biker taking a selfie while riding a motorcycle, Kamakura.",
@@ -67,12 +74,6 @@ title: Photos
         location: "tokyo"
       },
       {
-        src: {{ '/assets/photos/tokyo-from-above.jpg' | relative_url | jsonify }},
-        alt: "A visitor looking over Tokyo from a high-rise observation deck.",
-        caption: "Tokyo from above.",
-        location: "tokyo"
-      },
-      {
         src: {{ '/assets/photos/tokyo-tiffany.jpg' | relative_url | jsonify }},
         alt: "A person sitting beside bicycles outside a Tiffany & Co. storefront in Tokyo.",
         caption: "Outside Tiffany & Co., Tokyo.",
@@ -85,6 +86,18 @@ title: Photos
         location: "yuzawa"
       },
       {
+        src: {{ '/assets/photos/alaska-pier.jpg' | relative_url | jsonify }},
+        alt: "A marina filled with boats beneath snow-streaked mountains in Alaska.",
+        caption: "A marina beneath the mountains, Alaska.",
+        location: "alaska"
+      },
+      {
+        src: {{ '/assets/photos/alaska-speed-limit.jpg' | relative_url | jsonify }},
+        alt: "A speed limit 65 sign beside water and snow-covered mountains in Alaska.",
+        caption: "Speed limit 65, Alaska.",
+        location: "alaska"
+      },
+      {
         src: {{ '/assets/photos/california-01.jpeg' | relative_url | jsonify }},
         alt: "San Francisco, a runner crossing the street with a historical building in the background.",
         caption: "San Francisco, a runner crossing the street with a historical building in the background.",
@@ -94,12 +107,6 @@ title: Photos
         src: {{ '/assets/photos/california-02.jpg' | relative_url | jsonify }},
         alt: "Santa Monica, people riding spin bike on the beach.",
         caption: "Santa Monica, people riding spin bike on the beach.",
-        location: "california"
-      },
-      {
-        src: {{ '/assets/photos/california-03.jpg' | relative_url | jsonify }},
-        alt: "A watertower, somewhere in SoCal.",
-        caption: "A watertower, somewhere in SoCal.",
         location: "california"
       },
       {
@@ -173,18 +180,6 @@ title: Photos
         alt: "Valencia Rd, Tucson",
         caption: "Valencia Rd, Tucson",
         location: "arizona"
-      },
-      {
-        src: {{ '/assets/photos/alaska-pier.jpg' | relative_url | jsonify }},
-        alt: "A marina filled with boats beneath snow-streaked mountains in Alaska.",
-        caption: "A marina beneath the mountains, Alaska.",
-        location: "alaska"
-      },
-      {
-        src: {{ '/assets/photos/alaska-speed-limit.jpg' | relative_url | jsonify }},
-        alt: "A speed limit 65 sign beside water and snow-covered mountains in Alaska.",
-        caption: "Speed limit 65, Alaska.",
-        location: "alaska"
       }
     ];
 
@@ -196,6 +191,7 @@ title: Photos
     var prev = document.getElementById("photo-prev");
     var next = document.getElementById("photo-next");
     var locationLinks = document.querySelectorAll(".photo-location-link");
+    var preloadCache = {};
     var index = 0;
 
     function indexFromHash() {
@@ -204,9 +200,30 @@ title: Photos
       return link ? Number(link.dataset.photoIndex) : 0;
     }
 
+    function preloadPhoto(photoIndex) {
+      var normalizedIndex = (photoIndex + photos.length) % photos.length;
+      var src = photos[normalizedIndex].src;
+      if (!preloadCache[src]) {
+        preloadCache[src] = new Image();
+        preloadCache[src].src = src;
+      }
+    }
+
+    function finishLoading() {
+      gallery.classList.remove("is-loading");
+      gallery.removeAttribute("aria-busy");
+    }
+
+    image.addEventListener("load", finishLoading);
+    image.addEventListener("error", finishLoading);
+
     function renderPhoto(nextIndex, syncHash, alignGallery) {
       index = (nextIndex + photos.length) % photos.length;
-      image.src = photos[index].src;
+      if (image.getAttribute("src") !== photos[index].src) {
+        gallery.classList.add("is-loading");
+        gallery.setAttribute("aria-busy", "true");
+        image.src = photos[index].src;
+      }
       image.alt = photos[index].alt;
       captionText.textContent = photos[index].caption;
       current.textContent = index + 1;
@@ -231,6 +248,9 @@ title: Photos
           gallery.scrollIntoView({ block: "start" });
         });
       }
+
+      preloadPhoto(index - 1);
+      preloadPhoto(index + 1);
     }
 
     prev.addEventListener("click", function (event) {
