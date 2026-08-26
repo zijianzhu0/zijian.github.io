@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root { --w: 720px; --fg: #111; --muted: #666; --bg: #fff; --link: #111; --line: #eaeaea; }
 
 html, body { background: var(--bg); color: var(--fg); }
@@ -46,9 +47,13 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
 
 .photo-location-link.is-active { border-bottom-color: var(--fg); }
 
-.photo-gallery__image { display: block; width: auto; max-width: 100%; max-height: 100%; border-radius: 10px; cursor: pointer; }
+.photo-gallery__image { display: block; width: auto; max-width: 100%; max-height: 100%; border-radius: 10px; cursor: pointer; transition: opacity 120ms ease; }
 
-.photo-gallery__frame { display: block; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 10px; background: transparent; color: inherit; font: inherit; text-align: left; overflow: hidden; }
+.photo-gallery__frame { display: block; position: relative; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 10px; background: transparent; color: inherit; font: inherit; text-align: left; overflow: hidden; }
+
+.photo-gallery.is-loading .photo-gallery__image { opacity: 0.5; }
+
+.photo-gallery.is-loading .photo-gallery__frame::after { content: "Loading…"; position: absolute; inset: 50% auto auto 50%; padding: 4px 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.88); color: var(--fg); font-size: 0.9rem; transform: translate(-50%, -50%); pointer-events: none; }
 
 .photo-gallery__frame:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
